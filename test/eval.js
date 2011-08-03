@@ -3,6 +3,8 @@ var vows = require('vows'),
        e = require('../lib/eval'),
   reader = require('../lib/reader');
 
+require('../lib/lambda');
+
 e.define('sym', 'val');
 e.define('two', function () { return 2; });
 e.define('double', function (_, x) { return x*2; });
