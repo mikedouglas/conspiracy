@@ -23,7 +23,13 @@ vows.describe("EVAL").addBatch({
     assert.equal(e.evalAll(reader.parse('(double 5)')), 10);
   },
 
+  "should be able to apply lambdas": function () {
+    var val = "((lambda (x) x) 5)";
+    assert.equal(e.evalAll(reader.parse(val)), 5);
+  },
+
   "should be able to define symbols": function () {
     assert.equal(e.evalAll(reader.parse('(define answer 42) answer')), 42);
+    assert.equal(e.evalAll(reader.parse('(define id (lambda (x) x)) (id 5)')), 5);
   }
 }).export(module);
