@@ -4,14 +4,11 @@ var vows = require('vows'),
   reader = require('../lib/reader');
 
 require('../lib/lambda');
+require('../lib/primitives');
 
 e.define('sym', 'val');
 e.define('two', function () { return 2; });
 e.define('double', function (_, x) { return x*2; });
-
-e.special_form('define', function (_, sym, val) {
-  e.define(sym.name, e.eval(val));
-});
 
 assert.evalEqual = function (str, expected) {
   assert.equal(e.evalAll(reader.parse(str)), expected);

@@ -44,5 +44,14 @@ vows.describe("Primitives").addBatch({
 
   "should correctly quote": function () {
     assert.deepEqual(e.evalAll(r.parse("(quote hello)")), r.parse("hello")[0]);
+  },
+
+  "should implement begin": function () {
+    assert.evalEqual("(begin 1 2 3)", 3);
+  },
+
+  "should implement let": function () {
+    assert.evalEqual("(let ((x 1)) x)", 1);
+    assert.evalEqual("(define x 2) (let ((x 1)) x)", 1);
   }
 }).export(module);
