@@ -53,5 +53,9 @@ vows.describe("Primitives").addBatch({
   "should implement let": function () {
     assert.evalEqual("(let ((x 1)) x)", 1);
     assert.evalEqual("(define x 2) (let ((x 1)) x)", 1);
+  },
+
+  "should be able to define functions": function () {
+    assert.evalEqual("(define (fn x) (* x x)) (fn 5)", 25);
   }
 }).export(module);
