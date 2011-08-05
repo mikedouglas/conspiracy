@@ -26,5 +26,14 @@ vows.describe("Macro System").addBatch({
                                 "(if (eq? x 'foo) 100 " +
                                 "(if (eq? x 'bar) 200))))) " +
                        "(+ (f foo) (f bar)))", 300);
+  },
+
+  "should sub in quasiquotes": function () {
+    assert.evalEqual("(let ((m (macro (f x) `(f x))) " +
+                           "(f (lambda (x) (* x x))) " +
+                           "(x 3)) " +
+                       "(m (lambda (x) x) 5))", 9);
+    assert.evalEqual("(let ((f (lambda (x) (* x x)))) " +
+                        "((macro (f x) `(f ,x)) (lambda (x) x) 5))", 25);
   }
 }).export(module);
