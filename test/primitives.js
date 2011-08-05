@@ -24,22 +24,22 @@ vows.describe("Primitives").addBatch({
   "should correctly handle if/and/or": function () {
     assert.evalEqual("(if #t 5 3)", 5);
     // lazy eval
-    assert.evalEqual("(if #t 5 (/ 3 'hello'))", 5);
-    assert.evalThrows("(if #t (/ 3 'hello') 5)");
+    assert.evalEqual("(if #t 5 (/ 3 \"hello\"))", 5);
+    assert.evalThrows("(if #t (/ 3 \"hello\") 5)");
 
     assert.evalEqual("(and #t #t)", true);
     assert.evalEqual("(and #t #f)", false);
     assert.evalEqual("(and #f #t)", false);
     assert.evalEqual("(and #f #f)", false);
-    assert.evalEqual("(and #f (/ 3 'hello'))", false);
-    assert.evalThrows("(and #t (/ 3 'hello'))");
+    assert.evalEqual("(and #f (/ 3 \"hello\"))", false);
+    assert.evalThrows("(and #t (/ 3 \"hello\"))");
 
     assert.evalEqual("(or #t #t)", true);
     assert.evalEqual("(or #t #f)", true);
     assert.evalEqual("(or #f #t)", true);
     assert.evalEqual("(or #f #f)", false);
-    assert.evalEqual("(or #t (/ 3 'hello'))", true);
-    assert.evalThrows("(or #f (/ 3 'hello'))");
+    assert.evalEqual("(or #t (/ 3 \"hello\"))", true);
+    assert.evalThrows("(or #f (/ 3 \"hello\"))");
   },
 
   "should correctly quote": function () {
