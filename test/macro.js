@@ -36,7 +36,18 @@ vows.describe("Macro System").addBatch({
     assert.evalEqual("(let ((f (lambda (x) (* x x)))) " +
                         "((macro (f x) `(f ,x)) (lambda (x) x) 5))", 25);
   },
+
   "should expand lists in quasiquotes": function () {
     assert.evalEqual("((macro (x & more) `(begin ,@more)) 1 2 3)", 3);
+  },
+
+  "should not expand recursively": function () {
+    assert.evalEqual("(define defmacro (macro (args & body) " +
+                       "(let ((sym (first args)) " +
+                             "(args (rest args))) " +
+                         "`(define ,sym (macro ,args " +
+                                         "(begin ,@body)))))) " +
+                     "(defmacro (when test & body) `(if ,test (begin ,@body))) " +
+                     "(when #t 3)", 3);
   }
 }).export(module);
