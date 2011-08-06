@@ -35,5 +35,8 @@ vows.describe("Macro System").addBatch({
                        "(m (lambda (x) x) 5))", 9);
     assert.evalEqual("(let ((f (lambda (x) (* x x)))) " +
                         "((macro (f x) `(f ,x)) (lambda (x) x) 5))", 25);
+  },
+  "should expand lists in quasiquotes": function () {
+    assert.evalEqual("((macro (x & more) `(begin ,@more)) 1 2 3)", 3);
   }
 }).export(module);
