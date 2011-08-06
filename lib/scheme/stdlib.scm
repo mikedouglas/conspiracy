@@ -12,7 +12,7 @@
 (define (not val)
   (if val #f #t))
 
-(define else true)
+(define else #t)
 
 (defmacro (cond & body)
   (let ((test (first (first body)))
