@@ -23,3 +23,9 @@ Features
   ```
 
 * type integration with Javascript (strings, numbers, lists)
+
+  ```scheme
+(eq? (js-eval "3 + 4") 7) ; => true
+(rest (js-eval "[1,2,3]")) ; => [2,3]
+(js-eval (first "process.argv")) ; => "node"
+  ```
