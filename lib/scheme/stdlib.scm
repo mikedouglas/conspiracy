@@ -9,6 +9,22 @@
      (begin
        ,@body)))
 
+(define (not val)
+  (if val #f #t))
+
+(define else true)
+
+(defmacro (cond & body)
+  (let ((test (first (first body)))
+        (result (rest (first body)))
+        (rest (rest body)))
+    (if (not (empty? rest))
+      `(if ,test
+         (begin ,@result)
+         (cond ,@rest))
+      `(if ,test
+         (begin ,@result)))))
+
 (define (list & more)
   more)
 
