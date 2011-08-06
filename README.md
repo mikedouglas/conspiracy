@@ -29,3 +29,10 @@ Features
 (rest (js-eval "[1,2,3]")) ; => [2,3]
 (js-eval (first "process.argv")) ; => "node"
   ```
+
+Use
+---
+
+To start a REPL: `node lib/conspiracy.js`.
+
+To eval a file: `node lib/conspiracy.js <FILE>`.
