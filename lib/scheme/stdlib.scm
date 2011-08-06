@@ -1,3 +1,14 @@
+(define defmacro (macro (args & body)
+  (let ((sym (first args))
+        (args (rest args)))
+    `(define ,sym (macro ,args
+                    (begin ,@body))))))
+
+(defmacro (when test & body)
+  `(if ,test
+     (begin
+       ,@body)))
+
 (define (list & more)
   more)
 
