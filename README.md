@@ -1,5 +1,10 @@
 *Conspiracy* is a Scheme-like Lisp built on Javascript.
 
+Try
+---
+
+Visit ()[http://repl.entropy.io].
+
 Features
 --------
 * first-class macros
