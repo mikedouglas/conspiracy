@@ -15,5 +15,5 @@ server.use(require('browserify')({
   //filter: require('uglify-js')
 }));
 
-server.listen(9797);
-console.log('Listening on 9797...');
+server.listen(9797, '127.0.0.1');
+console.log('Listening on 127.0.0.1:9797...');
