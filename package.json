@@ -3,8 +3,12 @@
   "description"  : "A lisp on javascript",
   "author"       : "Mike Douglas <hello@entropy.io>",
   "dependencies" : {
-  "vows"  : ">=0.5.9",
-  "pegjs" : ">=0.6.1"
+    "vows": ">=0.5.9",
+    "pegjs": ">=0.6.1",
+    "underscore": ">=1.1.7",
+    "connect": ">=1.6.1",
+    "uglify-js": ">=1.0.6",
+    "browserify": ">=1.4.2"
   },
   "version"      : "0.0.1"
 }
