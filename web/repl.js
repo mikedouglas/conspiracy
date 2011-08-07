@@ -12,7 +12,7 @@ server.use(require('browserify')({
             'util',
             'underscore',
             'pegjs'],
-  //filter: require('uglify-js')
+  filter: require('uglify-js')
 }));
 
 server.listen(9797, '127.0.0.1');
