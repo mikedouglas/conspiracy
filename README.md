@@ -3,7 +3,7 @@
 Try
 ---
 
-Visit ()[http://repl.entropy.io].
+Visit [](http://repl.entropy.io).
 
 Features
 --------
