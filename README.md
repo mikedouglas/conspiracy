@@ -36,3 +36,5 @@ Use
 To start a REPL: `node lib/conspiracy.js`.
 
 To eval a file: `node lib/conspiracy.js <FILE>`.
+
+To start the REPL web server: `node web/repl.js`.
