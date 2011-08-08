@@ -46,3 +46,15 @@
                acm
                (recur (rest n) (inc acm))))))
     (f n 0)))
+
+(define (member? x lst)
+  (cond ((empty? lst) #f)
+        ((eq? (first lst) x) #t)
+        (else (recur x (rest lst)))))
+
+(define (reverse lst)
+  (let ((rev (lambda (lst rev-lst)
+               (if (empty? lst)
+                 rev-lst
+                 (recur (rest lst) (cons (first lst) rev-lst))))))
+    (rev lst '())))
