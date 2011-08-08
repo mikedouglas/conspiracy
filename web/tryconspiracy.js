@@ -44,6 +44,8 @@ function onHandle(line, report) {
     if (typeof e == 'string') {
       return [{msg: e, className: "jquery-console-message-error"}];
     }
+    else
+      return [{msg: e.message, className: "jquery-console-message-error"}];
   }
 }
 
