@@ -1,3 +1,19 @@
+(define (second lst)
+  (first (rest lst)))
+
+(define (map fn lst)
+  (if (empty? lst)
+    '()
+    (cons (fn (first lst)) (map fn (rest lst)))))
+
+(define let (macro (bindings & body)
+  ((lambda (vars vals)
+     `((lambda ,vars
+         ,@body)
+       ,@vals))
+   (map first bindings)
+   (map second bindings))))
+
 (define defmacro (macro (args & body)
   (let ((sym (first args))
         (args (rest args)))
@@ -58,3 +74,58 @@
                  rev-lst
                  (recur (rest lst) (cons (first lst) rev-lst))))))
     (rev lst '())))
+
+(define (>= val1 val2)
+  (or (> val1 val2) (eq? val1 val2)))
+
+(define (range start end)
+  (let ((r (lambda (lst end)
+             (if (> start end)
+               lst
+               (recur (cons end lst) (dec end))))))
+    (r '() (dec end))))
+
+(define (second lst)
+  (first (rest lst)))
+
+;(define (split list)
+;  (let ((split-h (lambda (ls ls1 ls2)
+;                   (cond
+;                     ((or (empty? ls) (empty? (rest ls)))
+;                      (cons (reverse ls2) ls1))
+;                     (else
+;                       (recur (rest (rest ls)) (rest ls1) (cons (first ls1) ls2)))))))
+;    (split-h list list '())))
+
+(define (split-h ls ls1 ls2)
+  (if (or (empty? ls) (empty? (rest ls)))
+    (cons (reverse ls2) ls1)
+    (recur (rest (rest ls)) (rest ls1) (cons (first ls1) ls2))))
+
+(define (split list)
+  (let ((split-h (lambda (ls ls1 ls2)
+                   (if (or (empty? ls) (empty? (rest ls)))
+                      (cons (reverse ls2) ls1)
+                      (recur (rest (rest ls)) (rest ls1) (cons (first ls1) ls2))))))
+    (split-h list list '())))
+
+
+(define (merge pred ls1 ls2)
+  (cond
+    ((empty? ls1) ls2)
+    ((empty? ls2) ls1)
+    ((pred (first ls1) (first ls2))
+     (cons (first ls1) (merge pred (rest ls1) ls2)))
+    (else
+      (cons (first ls2) (merge pred ls1 (rest ls2))))))
+
+(define (merge-sort pred lst)
+  (cond
+    ((empty? lst) lst)
+    ((empty? (rest lst)) lst)
+    (else (let ((splits (split lst)))
+            (merge pred
+                   (merge-sort pred (first splits))
+                   (merge-sort pred (rest splits)))))))
+
+(define sort merge-sort)
