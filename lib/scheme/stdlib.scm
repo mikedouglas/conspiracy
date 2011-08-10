@@ -88,20 +88,6 @@
 (define (second lst)
   (first (rest lst)))
 
-;(define (split list)
-;  (let ((split-h (lambda (ls ls1 ls2)
-;                   (cond
-;                     ((or (empty? ls) (empty? (rest ls)))
-;                      (cons (reverse ls2) ls1))
-;                     (else
-;                       (recur (rest (rest ls)) (rest ls1) (cons (first ls1) ls2)))))))
-;    (split-h list list '())))
-
-(define (split-h ls ls1 ls2)
-  (if (or (empty? ls) (empty? (rest ls)))
-    (cons (reverse ls2) ls1)
-    (recur (rest (rest ls)) (rest ls1) (cons (first ls1) ls2))))
-
 (define (split list)
   (let ((split-h (lambda (ls ls1 ls2)
                    (if (or (empty? ls) (empty? (rest ls)))
