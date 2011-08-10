@@ -47,5 +47,10 @@ vows.describe("Primitives").addBatch({
 
   "should be able to define functions": function () {
     assert.evalEqual("(define (fn x) (* x x)) (fn 5)", 25);
+  },
+
+  "should be able to name lets": function () {
+    // while depends on named lets
+    assert.evalEqual("(define a 5) (while (> a 0) (set! a (dec a))) a", 0);
   }
 }).export(module);

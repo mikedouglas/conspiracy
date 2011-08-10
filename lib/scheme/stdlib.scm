@@ -7,12 +7,28 @@
     (cons (fn (first lst)) (map fn (rest lst)))))
 
 (define let (macro (bindings & body)
-  ((lambda (vars vals)
-     `((lambda ,vars
-         ,@body)
-       ,@vals))
-   (map first bindings)
-   (map second bindings))))
+  (if (list? bindings)
+    ((lambda (vars vals)
+       `((lambda ,vars
+           ,@body)
+         ,@vals))
+     (map first bindings)
+     (map second bindings))
+    ((lambda (name vars vals r-body)
+       `((lambda ,name ,vars
+           ,@r-body)
+         ,@vals))
+     bindings
+     (map first (first body))
+     (map second (first body))
+     (rest body)))))
+
+(define (map-indexed fn lst)
+  (let ((map-i (lambda map-i (fn lst idx)
+                 (if (empty? lst)
+                   '()
+                   (cons (fn (first lst) idx) (map-i fn (rest lst) (inc idx)))))))
+    (map-i fn lst 0)))
 
 (define defmacro (macro (args & body)
   (let ((sym (first args))
@@ -115,3 +131,10 @@
                    (merge-sort pred (rest splits)))))))
 
 (define sort merge-sort)
+
+(defmacro (while test & body)
+  `(let loop ()
+     (if ,test
+       (begin
+         ,@body
+         (loop)))))

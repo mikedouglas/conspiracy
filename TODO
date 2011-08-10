@@ -1,6 +1,5 @@
 * continuations: possible without breaking js stack?
 * expose connect API to lisp
 * implicit tail call optimization
-* named lets
 * hygenic macros
 * lazy evaluation (delay and force)
