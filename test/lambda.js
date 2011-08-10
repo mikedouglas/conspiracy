@@ -3,18 +3,7 @@ var vows = require('vows'),
        e = require('../lib/eval'),
        r = require('../lib/reader');
 
-require('../lib/lambda');
-require('../lib/primitives');
-
-assert.evalEqual = function (str, expected) {
-  assert.equal(e.evalAll(r.parse(str)), expected);
-};
-
-assert.evalThrows = function (str) {
-  assert.throws(function () {
-    e.evalAll(r.parse(str));
-  });
-};
+require('./conspiracy');
 
 vows.describe("Lambda").addBatch({
   "should optimize tail recursion when explicitly told to": function () {

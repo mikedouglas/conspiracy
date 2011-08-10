@@ -3,17 +3,7 @@ var vows = require('vows'),
        e = require('../lib/eval'),
   reader = require('../lib/reader');
 
-require('../lib/lambda');
-require('../lib/primitives');
-require('../lib/macro');
-
-assert.evalEqual = function (str, expected) {
-  assert.equal(e.evalAll(reader.parse(str)), expected);
-};
-
-assert.evalOk = function (str, expected) {
-  assert.ok(e.evalAll(reader.parse(str)), expected);
-};
+require('./conspiracy');
 
 vows.describe("Macro System").addBatch({
   "should not eval arguments": function () {

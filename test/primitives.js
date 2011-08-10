@@ -3,17 +3,7 @@
 assert = require('assert'),
   vows = require('vows');
 
-require('../lib/primitives');
-
-assert.evalEqual = function (str, expected) {
-	assert.equal(e.evalAll(r.parse(str)), expected);
-};
-
-assert.evalThrows = function (str) {
-  assert.throws(function () {
-    e.evalAll(r.parse(str));
-  });
-};
+require('./conspiracy');
 
 vows.describe("Primitives").addBatch({
 	"should perform basic num ops": function () {

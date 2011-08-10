@@ -3,16 +3,11 @@ var vows = require('vows'),
        e = require('../lib/eval'),
   reader = require('../lib/reader');
 
-require('../lib/lambda');
-require('../lib/primitives');
+require('./conspiracy');
 
 e.define('sym', 'val');
 e.define('two', function () { return 2; });
 e.define('double', function (_, x) { return x*2; });
-
-assert.evalEqual = function (str, expected) {
-  assert.equal(e.evalAll(reader.parse(str)), expected);
-};
 
 vows.describe("EVAL").addBatch({
   "should find pre-defined symbols": function () {
