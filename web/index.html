@@ -7,7 +7,11 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="http://github.com/downloads/mikedouglas/jquery-console/jquery.console.min.js"></script>
     <script src="tryconspiracy.js"></script>
+    <script src="/static/highlight.pack.js"></script>
+    <link rel="stylesheet" src="/static/github.css">
     <style>
+      body { font-family: Helvetica; font-size: 14px; }
+
       #console {
         height: 220px;
         background: #eee;
@@ -52,6 +56,18 @@
   <body>
     <div id="wrapper" style="width:620px; margin: 0 auto;">
       <div class="console" id="console">
+      </div>
+      <div class="info">
+<p>
+You're looking at a REPL for Conspiracy, a Scheme-like lisp on Javascript.
+</p>
+<p>
+Examples:
+<ul>
+  <li><pre><code>(map (lambda (x) (* x 3)) '(1 2 3 4 5))</code></pre></li>
+  <li><a href="/hilbert-curve.html">Hilbert Curves</a></li>
+</ul>
+</p>
       </div>
     </div>
   </body>
