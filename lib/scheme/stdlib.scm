@@ -1,3 +1,5 @@
+(define null (if #f #t))
+
 (define (second lst)
   (first (rest lst)))
 
