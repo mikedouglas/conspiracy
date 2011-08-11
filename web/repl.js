@@ -4,6 +4,7 @@ var server = connect.createServer();
 server.use(connect.static(__dirname));
 server.use('/lib', connect.static(__dirname + '/../lib'));
 server.use('/examples', connect.static(__dirname + '/../examples'));
+server.use('/static', connect.static(__dirname + '/static'));
 server.use(require('browserify')({
   require: [__dirname + '/../lib/eval.js',
             __dirname + '/../lib/lambda.js',
