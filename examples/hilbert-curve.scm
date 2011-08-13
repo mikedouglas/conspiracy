@@ -44,5 +44,5 @@
         (list x y)))))
 
 (define (hilbertCurve level)
-  (map (lambda (i) (d2xy level i))
+  (mapr (lambda (i) (d2xy level i))
        (range 0 (arithmetic-shift 1 (* level 2)))))
